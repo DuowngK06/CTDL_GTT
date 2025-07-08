@@ -11,7 +11,7 @@ typedef struct {
     int maxSize;
 } Stack;
 
-// Ham khoi tao ngan xep voi kich thuoc toi da
+// Ham khoi tao ngan xep
 Stack createStack(int maxSize) {
     Stack stack;
     stack.arr = (int *)malloc(maxSize * sizeof(int));
@@ -28,6 +28,18 @@ void push(Stack *stack, int value) {
     }
     stack->top++;
     stack->arr[stack->top] = value;
+}
+
+// Ham xem toan bo phan tu trong ngan xep theo thu tu LIFO
+void viewStack(Stack stack) {
+    if (stack.top == -1) {
+        printf("Ngan xep dang rong.\n");
+        return;
+    }
+    printf("Cac phan tu trong ngan xep (LIFO):\n");
+    for (int i = stack.top; i >= 0; i--) {
+        printf("%d\n", stack.arr[i]);
+    }
 }
 
 // Ham hien thi thong tin ngan xep
@@ -55,15 +67,16 @@ void freeStack(Stack *stack) {
 int main() {
     Stack myStack = createStack(5);
 
-    printf("Nhap cac phan tu:\n");
+    // Them 5 phan tu
+    int values[] = {10, 20, 30, 40, 50};
     for (int i = 0; i < 5; i++) {
-        int value;
-        printf(">> ");
-        scanf("%d", &value);
-        push(&myStack, value);
+        push(&myStack, values[i]);
     }
 
     printStack(myStack);
+    printf("\n");
+    viewStack(myStack);
+
     freeStack(&myStack);
     return 0;
 }
