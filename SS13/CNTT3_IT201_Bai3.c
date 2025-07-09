@@ -22,7 +22,7 @@ Stack createStack(int maxSize) {
     return stack;
 }
 
-// Ham them phan tu vao ngan xep
+// Hàm thêm phần tử vào ngăn xếp
 void push(Stack *stack, int value) {
     if (stack->top >= stack->maxSize - 1) {
         printf("Ngan xep day. Khong the them %d\n", value);
@@ -32,7 +32,7 @@ void push(Stack *stack, int value) {
     stack->arr[stack->top] = value;
 }
 
-// Ham lay phan tu ra khoi ngan xep
+// Hàm lấy phần tử ra khỏi ngăn xếp
 int pop(Stack *stack) {
     if (stack->top == -1) {
         printf("No element in stack\n");
